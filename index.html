@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Protected Page</title>
+</head>
+<body>
+
+  <h1>Emellio docs</h1>
+
+  <form id="passwordForm">
+    <label for="password">Enter the password:</label>
+    <input type="password" id="password" name="password">
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="secretLink" style="display: none;">
+    <p>Here's the secret link:</p>
+    <a href="docs/index.html">Secret Link</a>
+  </div>
+
+  <script>
+    // Obfuscated password
+    const obfuscatedPassword = "s3cR3tP@ssw0rd";
+
+    document.getElementById("passwordForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      
+      // Check if the entered password matches the obfuscated password
+      const enteredPassword = document.getElementById("password").value;
+      if (enteredPassword === obfuscatedPassword) {
+        // If the password is correct, show the secret link
+        document.getElementById("secretLink").style.display = "block";
+      } else {
+        // If the password is incorrect, show an error message
+        alert("Incorrect password. Please try again.");
+      }
+
+      // Clear the password input field
+      document.getElementById("password").value = "";
+    });
+  </script>
+
+</body>
+</html>
