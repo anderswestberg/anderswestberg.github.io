@@ -3,35 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Password Protected Page</title>
+  <title>Emellio docs</title>
 </head>
 <body>
 
-  <h1>Emellio docs</h1>
+  <h1>Sign in</h1>
 
   <form id="passwordForm">
     <label for="password">Enter the password:</label>
     <input type="password" id="password" name="password">
     <button type="submit">Submit</button>
+    (Hint: gra..en)
   </form>
 
   <div id="secretLink" style="display: none;">
-    <p>Here's the secret link:</p>
+    <p>Emellio docs:</p>
     <a href="docs/index.html">Secret Link</a>
   </div>
 
   <script>
-    // Obfuscated password
-    const obfuscatedPassword = "s3cR3tP@ssw0rd";
+    
+    // Encrypted password
+    const encryptedPassword = "Z3Jhbmt1bGxlbg=="; // Replace with the encrypted password
 
     document.getElementById("passwordForm").addEventListener("submit", function(event) {
       event.preventDefault();
       
-      // Check if the entered password matches the obfuscated password
+      // Decrypt the entered password and the encrypted password
       const enteredPassword = document.getElementById("password").value;
-      if (enteredPassword === obfuscatedPassword) {
+      const encryptedEnteredPassword = btoa(enteredPassword);
+
+      // Check if the decrypted entered password matches the decrypted encrypted password
+      if (encryptedEnteredPassword === encryptedPassword) {
         // If the password is correct, show the secret link
-        document.getElementById("secretLink").style.display = "block";
+        window.location.href = "docs/index.html";
       } else {
         // If the password is incorrect, show an error message
         alert("Incorrect password. Please try again.");
